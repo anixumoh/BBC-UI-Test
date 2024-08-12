@@ -9,6 +9,14 @@
 // ***********************************************
 //
 //
+Cypress.Commands.add('search', (criteria) => {
+    cy.get("div[role='search']").click();
+    cy.origin('https://www.bbc.co.uk', { args: criteria }, (criteria) => {
+        cy.get("#searchInput").clear().type(criteria);
+        cy.get("#searchButton").click();
+    })
+})
+
 
 Cypress.Commands.add("clickSignInButton",()=>{
     cy.get("ul[role='list'] a[language='en-GB']").click();
